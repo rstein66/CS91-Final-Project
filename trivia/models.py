@@ -1,5 +1,4 @@
 from django.db import models
-import ast
 
 # Create your models here.
 
@@ -9,6 +8,11 @@ class Flashcard(models.Model):
     # tags will be concatenated as a comma-delimited string
     tags = models.CharField(max_length = 350, default = 'empty')
     answer_text = models.CharField(max_length = 350)
+    q_id = models.IntegerField(default = '0')
+
+    def get(self):
+        return self.Flashcard
+
 
 # question for game mode
 class MCQuestion(models.Model):

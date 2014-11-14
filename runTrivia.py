@@ -1,10 +1,20 @@
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
+import django
+django.setup()
 from trivia.models import Flashcard, MCQuestion, Choice
 
 def main():
     cardGenerator = Flashcard.objects.all()
-    
+
+    # ADDED UNIQUE IDS TO QUESTIONS
+    # i = 0
+    # for card in cardGenerator:
+    #     card.q_id = i
+    #     card.save()
+    #     i = i + 1
+
+    # SAMPLE TAG SEARCH    
     tagSearch = raw_input("Search for question tags, separated by commas: ")
     userTags = tagSearch.split(",")
 
