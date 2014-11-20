@@ -10,15 +10,17 @@ def index(request):
 	template = loader.get_template('trivia/index.html')
 	context = RequestContext(request, {'latest_question_list':latest_question_list})
 	return HttpResponse(template.render(context))
-	#return HttpResponse("Hello World, you are at the trivia index.")
 
-def FCdetail(request, q_id):
-	currQ = get_object_or_404(Flashcard, q_id = q_id)
-	#return render(request, 'trivia/templates/trivia/FCdetail.html', {'Question:': currQ})
-	return HttpResponse("Question: \n%s" % currQ.question_text)
+def FCques(request, q_id):
+	question = Flashcard.objects.get(q_id = q_id)
+	template = loader.get_template('trivia/FCques.html')
+	context = RequestContext(request, {'question':question})
+	return HttpResponse(template.render(context))
 
 def FCanswer(request, q_id):
-	currA = get_object_or_404(Flashcard, q_id = q_id)
-	#return render(request, 'trivia/templates/trivia/FCanswer.html', {'Answer:': currA})
-
-	return HttpResponse("Answer: \n%s" % currA.answer_text)
+	question = Flashcard.objects.get(q_id = q_id)
+	# currA = get_object_or_404(Flashcard, q_id = q_id)
+	# return render(request, 'trivia/templates/trivia/FCanswer.html', {'Answer:': currA})
+	template = loader.get_template('trivia/FCans.html')
+	context = RequestContext(request, {'question':question})
+	return HttpResponse(template.render(context))
