@@ -7,7 +7,7 @@ from trivia.models import Flashcard, MCQuestion, Choice
 # searches DB for all questions tagged with the input category.
 # assumes no question has 2 identical tags, so that no question
 # is duplicated in the output question list
-def searchDB(category):
+def searchFlashDB(category):
     cardGenerator = Flashcard.objects.all()
 
     Qlist = []
