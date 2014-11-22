@@ -12,5 +12,4 @@ urlpatterns = patterns('',
 	url(r'^mode/$', views.mode, name = 'mode'),
 	url(r'^(?P<category>[A-z]\w+)/$', views.randomFC, name = 'randomFC'),
 	url(r'^(?P<category>[A-z]\w+)/(?P<q_id>\d+)/$', views.returnFC, name = 'returnFC'),
-	url(r'^MC/tags/$')
 )

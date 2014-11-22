@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext, loader
 from models import Flashcard
-from searchDB import searchFlashDB, searchMultDB, genTags
+from searchDB import searchFlashDB, genTags
 import random
 # Create your views here.
 
