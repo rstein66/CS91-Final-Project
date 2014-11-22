@@ -10,6 +10,15 @@
 		<link href="favicon.ico" rel="icon" >
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css">
+		<style>
+			.btn-default:active {
+				background-color:#D4FFFF;
+			}
+			a, a:focus, a:hover { /*masthead*/ 
+				text-decoration: none;
+			}
+		</style>		
+
 		<title>Q++</title>
 	</head>
 
@@ -32,8 +41,8 @@
           <div class="inner cover">
             <h1 class="cover-heading">{{question.question_text}}</h1>
             <p class="lead">
-              <a href="{{id}}/answer" class="btn btn-lg btn-default">See Answer</a>
-              <a href="" class="btn btn-lg btn-default">Skip</a>
+              <a href="{{id}}/answer" class="btn btn-lg btn-default" style="margin:1%">See Answer</a>
+              <a href="" class="btn btn-lg btn-default" style="margin:1%">Skip</a>
             </p>
 					</div> <!-- inner cover -->
 
