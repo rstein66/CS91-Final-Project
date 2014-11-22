@@ -4,19 +4,11 @@ import django
 django.setup()
 from trivia.models import Flashcard, MCQuestion, Choice
 
-def main():
+def searchDB():
     cardGenerator = Flashcard.objects.all()
 
-    # ADDED UNIQUE IDS TO QUESTIONS
-    # i = 0
-    # for card in cardGenerator:
-    #     card.q_id = i
-    #     card.save()
-    #     i = i + 1
-
     # SAMPLE TAG SEARCH    
-    tagSearch = raw_input("Search for question tags, separated by commas: ")
-    userTags = tagSearch.split(",")
+    userTags = ['algorithms']
 
     allTags = []
     cardTags = {}
@@ -41,16 +33,21 @@ def main():
                 if str(card) not in filteredQ:
                     filteredQ.append(str(card))
 
-    if len(filteredQ) == 0:
-        print "Could not find any questions with those tags."
-    else:
-        print "Found the following relevant questions:"
-        for q in filteredQ:
-            print q
+    return filteredQ
 
+def genTags():
+    cardGenerator = Flashcard.objects.all()
 
+    allTags = []
 
-    
+    for card in cardGenerator:
+        tags = card.tags
+        tagL = tags.split(",")
+        for tag in tagL:
 
-main()
+            # create a list of all unique tags in the DB
+            if str(tag) not in allTags:
+                allTags.append(str(tag))
+                
+    return allTags
 

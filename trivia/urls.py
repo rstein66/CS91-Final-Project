@@ -3,7 +3,11 @@ from trivia import views
 
 urlpatterns = patterns('', 
 
-	url(r'^$', views.index, name = 'index'),
+	url(r'^$', views.home, name = 'home'),
 	url(r'^(?P<q_id>\d+)/$', views.FCques, name = 'FCques'),
-	url(r'^(?P<q_id>\d+)/FCanswer/$', views.FCanswer, name = 'FCanswer'),
+	url(r'^(?P<q_id>\d+)/answer/$', views.FCanswer, name = 'FCanswer'),
+	#url(r'^filter/$', views.filter, name = 'filter'),
+	url(r'^about/$', views.about, name = 'about'),
+	url(r'^tags/$', views.chooseTag, name = 'tags'),
+	url(r'^mode/$', views.mode, name = 'mode')
 )

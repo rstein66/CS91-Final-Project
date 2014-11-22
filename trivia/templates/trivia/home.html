@@ -1,18 +1,24 @@
-<!-- <h2>{{question.question_text}}</h2>
+<!-- {% if latest_question_list %}
 <ul>
-	<a href="/trivia/{{question.id}}/FCanswer"> See Answer </a>
-</ul> -->
+{% for question in latest_question_list %}
+<li><a href="{{question.id}}/"> {{question.question_text}}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No questions are available.</p>
+{% endif %} -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 <link href="../../favicon.ico" rel="icon" >
-<title>Flashcard</title>
+<title>Q++ Home</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link href = "http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -22,7 +28,7 @@
 
  </head>
 
-  <body>
+ 	<body>
 
     <div class="site-wrapper">
 
@@ -35,18 +41,17 @@
               <h3 class="masthead-brand">Q++</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="../../trivia">Home</a></li>
+                  <li><a href="about">About</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">{{question.question_text}}</h1>
-            <p class="lead"></p>
+            <h1 class="cover-heading">Q++.</h1>
+            <p class="lead">Q++ is a trivia app built for reviewing course materials from CS31 and CS35, in order to help prepare for job interviews and exams.</p>
             <p class="lead">
-              <a href="answer" class="btn btn-lg btn-default">See Answer</a>
-              <a href="../{{id}}" class="btn btn-lg btn-default">Skip</a>
+              <a href="mode" class="btn btn-lg btn-default">Get Started</a>
             </p>
           </div>
 
