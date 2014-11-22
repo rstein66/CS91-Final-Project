@@ -4,36 +4,23 @@ import django
 django.setup()
 from trivia.models import Flashcard, MCQuestion, Choice
 
-def searchDB():
+# searches DB for all questions tagged with the input category.
+# assumes no question has 2 identical tags, so that no question
+# is duplicated in the output question list
+def searchDB(category):
     cardGenerator = Flashcard.objects.all()
 
-    # SAMPLE TAG SEARCH    
-    userTags = ['algorithms']
-
-    allTags = []
-    cardTags = {}
+    Qlist = []
     for card in cardGenerator:
         tags = card.tags
         tagL = tags.split(",")
         for tag in tagL:
 
             # create a list of all unique tags in the DB
-            if str(tag) not in allTags:
-                allTags.append(str(tag))
+            if str(tag) == category:
+                Qlist.append(card)
 
-            # create a dictionary of question:tags for all Q's in DB
-            if str(card.question_text) not in cardTags.keys():
-                cardTags[str(card.question_text)] = []
-            cardTags[str(card.question_text)].append(str(tag))
-
-    filteredQ = []
-    for card in cardTags.keys():
-        for tag in userTags:
-            if tag in cardTags[card]:
-                if str(card) not in filteredQ:
-                    filteredQ.append(str(card))
-
-    return filteredQ
+    return Qlist
 
 def genTags():
     cardGenerator = Flashcard.objects.all()
@@ -50,4 +37,3 @@ def genTags():
                 allTags.append(str(tag))
                 
     return allTags
-
