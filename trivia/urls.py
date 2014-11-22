@@ -25,3 +25,4 @@ urlpatterns = patterns('',
 	url(r'^MC/(?P<category>[A-z]\w+ [A-z]\w+)/(?P<q_id>\d+)/(?P<answer>[A-D]\b)/$', views.checkAns, name = 'checkAns'),
 	url(r'^MC/(?P<category>[A-z]\w+)/(?P<q_id>\d+)/(?P<answer>[A-D]\b)/$', views.checkAns, name = 'checkAns'),
 )
+
