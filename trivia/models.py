@@ -30,9 +30,12 @@ class MCQuestion(models.Model):
 
     answers = models.CharField(max_length = 1, choices = Answer_Choices, default = 'E')
     correct = models.CharField(max_length = 1, default = 'E')
+    answer_text = models.CharField(max_length = 100, default = 'empty')
     tags = models.CharField(max_length = 350, default = 'empty')
+    q_id = models.IntegerField(default = '0')
 
-    scorePercentage = models.FloatField(default = 0.0)
+    numCorrect = models.IntegerField(default = 0)
+    numWrong = models.IntegerField(default = 0)
 
 # For game mode only
 class Choice(models.Model):

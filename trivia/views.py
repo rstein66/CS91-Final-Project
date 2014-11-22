@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext, loader
-from models import Flashcard
-from searchDB import searchFlashDB, searchMultDB, genTags
+from models import Flashcard, MCQuestion
+from searchDB import searchDB, genTags
 import random
 # Create your views here.
 
@@ -22,7 +22,7 @@ def FCanswer(request, category, q_id):
 
 # page to select tags to search by
 def chooseTag(request):
-	tagList = genTags()
+	tagList = genTags('flashcard')
 	template = loader.get_template('trivia/tags.html')
 	context = RequestContext(request, {'tags':tagList})
 	return HttpResponse(template.render(context))
@@ -41,7 +41,7 @@ def about(request):
 
 # WHAT TO DO IF NO QUESTIONS ARE AVAILABLE FOR THE TAG????
 def randomFC(request, category):
-	Qlist = searchFlashDB(category)
+	Qlist = searchDB(category, 'flashcard')
 	randomQ = random.choice(Qlist)
 	template = loader.get_template('trivia/FCques.html')
 	context = RequestContext(request, {'question':randomQ, 'id':randomQ.q_id, 'category':category})
@@ -53,9 +53,29 @@ def returnFC(request, category, q_id):
 	context = RequestContext(request, {'question':question})
 	return HttpResponse(template.render(context))
 
+def chooseTagMC(request):
+	tagList = genTags('multiple choice')
+	template = loader.get_template('trivia/MCtags.html')
+	context = RequestContext(request, {'tags':tagList})
+	return HttpResponse(template.render(context))
+
 def randomMC(request, category):
-	Qlist = searchMultDB(category)
+	Qlist = searchDB(category, 'multiple choice')
 	randomQ = random.choice(Qlist)
 	template = loader.get_template('trivia/MCques.html')
 	context = RequestContext(request, {'question':randomQ, 'id':randomQ.q_id, 'category':category})
+	return HttpResponse(template.render(context))
+
+def checkAns(request, category, q_id, answer):
+	question = MCQuestion.objects.get(q_id = q_id)
+	if answer != question.correct:
+		template = loader.get_template('trivia/wrong.html')
+		question.numWrong = question.numWrong + 1
+		question.save()
+	else:
+		template = loader.get_template('trivia/right.html')
+		question.numCorrect = question.numCorrect + 1
+		question.save()
+
+	context = RequestContext(request, {'question':question, 'category':category, 'usrAnswer':answer, 'id':question.q_id})
 	return HttpResponse(template.render(context))
