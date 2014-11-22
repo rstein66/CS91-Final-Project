@@ -42,7 +42,13 @@
             <p class = "inner cover"></p>
             <p class="lead">
               {% for tag in tags %}
-                <a href="../{{tag}}" class="btn btn-lg btn-default" style="margin: 1%" >{{tag}}</a>
+              	{% if tag == 'CS35' %}
+                	<a href="../{{tag}}" class="btn btn-lg btn-default" style="margin: 1%; padding: 4%" >{{tag}}</a>
+                {% elif tag == 'CS31' %}
+                	<a href="../{{tag}}" class="btn btn-lg btn-default" style="margin: 1%; padding: 4%" >{{tag}}</a>
+                {% else %}
+                	<a href="../{{tag}}" class="btn btn-lg btn-default" style="margin: 1%" >{{tag}}</a>
+                {% endif %}
               {% endfor %}
             </p>
 					</div> <!-- inner cover -->
