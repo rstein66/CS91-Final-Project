@@ -18,6 +18,9 @@ urlpatterns = patterns('',
 	url(r'^(?P<category>[A-z]\w+ [A-z]\w+)/(?P<q_id>\d+)/$', views.returnFC, name = 'returnFC'),
 	url(r'^(?P<category>[A-z]\w+)/(?P<q_id>\d+)/$', views.returnFC, name = 'returnFC'),
 
+	url(r'^MC/(?P<category>[A-z]\w+ [A-z]\w+)/(?P<q_id>\d+)/$', views.returnMC, name = 'returnMC'),
+	url(r'^MC/(?P<category>[A-z]\w+)/(?P<q_id>\d+)/$', views.returnMC, name = 'returnMC'),
+
 	url(r'^MC/tags/$', views.chooseTagMC, name = 'MCtags'),
 	url(r'^MC/(?P<category>[A-z]\w+ [A-z]\w+)/$', views.randomMC, name = 'randomMC'),
 	url(r'^MC/(?P<category>[A-z]\w+)/$', views.randomMC, name = 'randomMC'),

@@ -28,7 +28,7 @@
           
 					<div class="masthead clearfix">
             <div class="inner">
-							<h3 class="masthead-brand"><a href="../../">Q++</a></h3>
+							<h3 class="masthead-brand"><a href="../../../">Q++</a></h3>
               <!--<nav>
                 <ul class="nav masthead-nav">
                   <li><a href="about">About</a></li>
@@ -39,9 +39,18 @@
 
           <div class="inner cover">
             <h1 class="cover-heading">{{question.question_text}}</h1>
+
+
             <p class="lead">
-              <a href="answer" class="btn btn-lg btn-default" style="background-color:gray, border:none">See Answer</a>
-              <a href="../" class="btn btn-lg btn-default">Next</a>
+              <a href="A/" class="btn btn-lg btn-default" style="margin: 1%">{{question.A}}</a><br/>
+              <a href="B/" class="btn btn-lg btn-default" style="margin: 1%">{{question.B}}</a><br/>
+              <a href="C/" class="btn btn-lg btn-default" style="margin: 1%">{{question.C}}</a><br/>
+              <a href="D/" class="btn btn-lg btn-default" style="margin: 1%">{{question.D}}</a><br/>
+            </p>
+
+             <p class="lead">
+							<br />
+              <a href="" class="btn btn-lg btn-default" style="background:gray; border:none">Skip</a>
             </p>
 					</div> <!-- inner cover -->
 

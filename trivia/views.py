@@ -68,6 +68,12 @@ def randomMC(request, category):
 	context = RequestContext(request, {'question':randomQ, 'id':randomQ.q_id, 'category':category})
 	return HttpResponse(template.render(context))
 
+def returnMC(request, category, q_id):
+	question = MCQuestion.objects.get(q_id = q_id)
+	template = loader.get_template('trivia/MCreturn.html')
+	context = RequestContext(request, {'question':question, 'id':question.q_id, 'category':category})
+	return HttpResponse(template.render(context))
+
 def checkAns(request, category, q_id, answer):
 	question = MCQuestion.objects.get(q_id = q_id)
 	if answer != question.correct:
